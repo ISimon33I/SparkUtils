@@ -30,7 +30,3 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.21.9-R0.1-SNAPSHOT'
 }
-
-task wrapper(type: Wrapper){
-   gradleVersion = '9.1.0'
-}
