@@ -30,5 +30,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper){
-   gradleVersion = '9.1.0'
+   gradleVersion = '8.12.1'
 }
