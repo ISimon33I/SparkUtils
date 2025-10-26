@@ -1,0 +1,34 @@
+
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = '21.0.0'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+task copyJars(type: Copy) {
+    from jar
+    into "../out/"
+}
+jar.finalizedBy copyJars
+
+sourceSets {
+    main.java.srcDirs = ['src/java']
+    main.resources.srcDirs = ['src/resources']
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/') }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.21.9-R0.1-SNAPSHOT'
+}
+
+task wrapper(type: Wrapper){
+   gradleVersion = '9.1.0'
+}

@@ -1,0 +1,16 @@
+timezone: "Europe/Stockholm"
+latitude: 59.0
+longitude: 13.0
+
+worlds:
+  world:
+    # --- Time mode to use ---
+    # 0 = Normal game time.
+    # 1 = Sync with real-world time.
+    time-mode: 0
+    
+    # Speed multiplier for normal game time (ignored in real-time mode).
+    time-speed: 1.0
+    
+    # Enables compensation for day/night length differences when in real-time mode.
+    real-time-day-length-compensation: true

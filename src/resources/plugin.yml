@@ -1,0 +1,105 @@
+name: SparkUtils
+main: com.isimon33i.sparkutils.Main
+version: 1.0
+load: STARTUP
+api-version: 1.21
+
+description: SparkUtils lägger till blandade användbara funktioner!
+author: ISimon33I
+
+commands:
+  tpa:
+    description: TP request
+    usage: Skriv /tpa <Player>
+    permission: sparkutils.tpa
+  tpahere:
+    description: TPHere request.
+    usage: Skriv /tpaccept
+    permission: sparkutils.tpa.here
+  tpaccept:
+    description: Accept a tp request.
+    usage: Skriv /tpaccept
+  tpdeny:
+    description: Deny a tp request.
+    usage: Skriv /tpaccept
+  tpatoggle:
+    description: Toggle tpa requests.
+    usage: Skriv /tpatoggle
+    permission: sparkutils.tpa.toggle
+  warp:
+    description: warp.
+    usage: Skriv /warp [warp]
+    permission: sparkutils.warp.use
+  setwarp:
+    description: setwarp.
+    usage: Skriv /setwarp <warpname> [restricted]
+    permission: sparkutils.warp.admin
+  editwarp:
+    description: editwarp commands.
+    usage: Skriv /editwarp <warpname> <subcommand> [arguments]
+    permission: sparkutils.warp.admin
+  home:
+    description: TP to home.
+    usage: Skriv /home [home]
+    permission: sparkutils.home.use
+  sethome:
+    description: Set your home.
+    usage: Skriv /sethome <home>
+    permission: sparkutils.home.use
+  edithome:
+    description: Edit your homes.
+    usage: Skriv /edithome <home>
+    permission: sparkutils.home.use
+  homelimit:
+    description: Show your home count limit.
+    usage: Skriv /homelimit
+    permission: sparkutils.home.use
+  spawn:
+    description: TP to spawn
+    usage: Skriv /spawn
+    permission: sparkutils.spawn.use
+  spawnall:
+    description: TP all players to spawn
+    usage: Skriv /spawn
+    permission: sparkutils.spawn.all
+  antigrief:
+    description: Set antigrief settings
+    permission: sparkutils.antigrief
+
+permissions:
+  sparkutils.*:
+    description: Ger alla kommandon.
+    default: op
+    
+  sparkutils.tpa:
+    description: Ger tillgång till att gör tp requests.
+    default: true
+    children:
+      sparkutils.tpa.here: true
+      sparkutils.tpa.toggle: true
+  sparkutils.tpa.here:
+    description: Ger tillgång till att gör tp here requests.
+    default: true
+  sparkutils.tpa.toggle:
+    description: Ger tillgång till att aktivera/avaktivera tp requests.
+    default: true
+    
+  sparkutils.warp.use:
+    description: Ger tillgång till att warpa.
+    default: true
+    
+  sparkutils.home.use:
+    description: Ger tillgång till att åka hem.
+    default: true
+  sparkutils.home.limit.1:
+    default: true
+    
+  sparkutils.spawn.use:
+    description: Ger tillgång att tp till spawn.
+    default: true
+  sparkutils.spawn.other:
+    description: Ger tillgång att tp andra till spawn.
+    default: op
+  sparkutils.spawn.all:
+    description: Ger tillgång att tp alla till spawn.
+    default: op

@@ -1,0 +1,14 @@
+# Prevent TNT from damaging blocks.
+prevent-tnt-block-damage: false
+
+# Prevent TNT from damaging entities (players, mobs, etc.).
+prevent-tnt-entity-damage: false
+
+# Prevent creepers from damaging blocks when they explode.
+prevent-creeper-block-damage: false
+
+# Prevent creepers from damaging entities when they explode.
+prevent-creeper-entity-damage: false
+
+# Prevent zombies from breaking wooden doors.
+prevent-zombie-break-door: false
