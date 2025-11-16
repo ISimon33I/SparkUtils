@@ -25,8 +25,11 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven { url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/') }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.21.9-R0.1-SNAPSHOT'
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
+    implementation("org.xerial:sqlite-jdbc:3.51.0.0")
 }

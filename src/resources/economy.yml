@@ -1,0 +1,11 @@
+
+request_timeout: 30000
+confirm_timout: 30000
+
+currency:
+  prefix: ""
+  surfix: "kr"
+
+storage:
+  backend: "sqlite"
+  path: "economy.db"

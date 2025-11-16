@@ -7,6 +7,8 @@ api-version: 1.21
 description: SparkUtils lägger till blandade användbara funktioner!
 author: ISimon33I
 
+softdepend: [Vault]
+
 commands:
   tpa:
     description: TP request
@@ -65,6 +67,33 @@ commands:
   antigrief:
     description: Set antigrief settings
     permission: sparkutils.antigrief
+  balance:
+    description: Display players economy balance
+    permission: sparkutils.economy.balance
+  setbalance:
+    description: Set players economy balance
+    permission: sparkutils.economy.setbalance
+  pay:
+    description: Pay amount to player
+    permission: sparkutils.economy.pay
+  payrequest:
+    description: Request payment from player
+    permission: sparkutils.economy.payrequest
+  payaccept:
+    description: Accept payment from player
+    permission: sparkutils.economy.payaccept
+  paydeny:
+    description: Deny payment from player
+    permission: sparkutils.economy.paydeny
+  payconfirm:
+    description: Confirm payment to player
+    permission: sparkutils.economy.payconfirm
+  paycancle:
+    description: Cancle payment to player
+    permission: sparkutils.economy.paycancle
+  top:
+    description: Display economy balance toplist
+    permission: sparkutils.economy.top
 
 permissions:
   sparkutils.*:
