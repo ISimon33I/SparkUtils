@@ -1,18 +1,24 @@
 package com.isimon33i.sparkutils;
 
 import java.io.File;
+import java.util.logging.Level;
 
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
 import com.isimon33i.sparkutils.modules.AntiGriefing;
 import com.isimon33i.sparkutils.modules.Spawn;
 import com.isimon33i.sparkutils.modules.TPA;
 import com.isimon33i.sparkutils.modules.Time;
+import com.isimon33i.sparkutils.modules.economy.EconomyModule;
 import com.isimon33i.sparkutils.modules.home.HomeModule;
 import com.isimon33i.sparkutils.modules.warp.WarpModule;
 import com.isimon33i.utils.lang.LanguageManager;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements PluginMessageListener {
 
     private static Main instance;
 
@@ -26,11 +32,16 @@ public class Main extends JavaPlugin {
     Spawn spawn;
     AntiGriefing antiGriefing;
     Time time;
+    EconomyModule economyModule;
 
     @Override
     public void onEnable() {
         super.onEnable();
         instance = this;
+        
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
+        
         
         saveDefaultConfig();
         
@@ -47,6 +58,7 @@ public class Main extends JavaPlugin {
         spawn = new Spawn(this);
         antiGriefing = new AntiGriefing(this);
         time = new Time(this);
+        economyModule = new EconomyModule(this);
 
         tpa.onRegister(this);
         warp.onRegister(this);
@@ -54,17 +66,31 @@ public class Main extends JavaPlugin {
         spawn.onRegister(this);
         antiGriefing.onRegister(this);
         time.onRegister(this);
+        economyModule.onRegister(this);
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
         
+        this.getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+        this.getServer().getMessenger().unregisterIncomingPluginChannel(this);
+        
+        economyModule.onUnregister(this);
+        time.onUnregister(this);
+        antiGriefing.onUnregister(this);
         spawn.onUnregister(this);
         home.onUnregister(this);
         warp.onUnregister(this);
         tpa.onUnregister(this);
 
         getServer().getScheduler().cancelTasks(this);
+    }
+
+    @Override
+    public void onPluginMessageReceived(String channel, Player player, byte[] message) {
+        ByteArrayDataInput in = ByteStreams.newDataInput(message);
+        getLogger().log(Level.INFO, "{0} | {1} | {2}", new Object[]{channel, player.getDisplayName(), in.toString()});
+        
     }
 }
