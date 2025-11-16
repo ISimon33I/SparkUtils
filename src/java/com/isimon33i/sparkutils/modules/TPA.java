@@ -43,7 +43,8 @@ public class TPA extends Module implements Runnable {
             return Bukkit.getPlayer(playerID);
         }
     }
-
+    
+    private int taskId = -1;
     private HashMap<UUID, List<TPRequest>> requests = new HashMap<>();
     private HashSet<UUID> tpaDisabled = new HashSet<>();
     private long requestTimeout = 30000;
@@ -56,12 +57,12 @@ public class TPA extends Module implements Runnable {
         registerCommand(plugin, "tpdeny", this);
         registerCommand(plugin, "tpatoggle", this);
 
-        plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, 20, 20);
+        taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, 20, 20);
     }
 
     @Override
     public void onUnregister(JavaPlugin plugin) {
-
+        plugin.getServer().getScheduler().cancelTask(taskId);
     }
 
     @Override
