@@ -63,13 +63,13 @@ public class Time extends Module implements Runnable {
                 if (worldConfigSection != null) {
                     var world = Bukkit.getWorld(worldConfigKey);
                     if (world != null) {
-                        var dayLightCycle = world.getGameRuleValue(GameRule.DO_DAYLIGHT_CYCLE);
+                        var dayLightCycle = world.getGameRuleValue(GameRule.ADVANCE_TIME);
                         
                         switch(worldConfigSection.getInt(configTimeModeKey, 0)) {
                             case 0 -> {
                                 var speed = worldConfigSection.getDouble(configTimeSpeedKey, 1.0);
                                 if (speed != 1.0) {
-                                    if(dayLightCycle==true) world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+                                    if(dayLightCycle==true) world.setGameRule(GameRule.ADVANCE_TIME, false);
                                     
                                     var timeCounter = timeCounterMap.getOrDefault(world.getUID(), 0D);
                                     timeCounter += speed;
@@ -88,7 +88,7 @@ public class Time extends Module implements Runnable {
                                 }
                             }
                             case 1 -> {
-                                if(dayLightCycle==true) world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+                                if(dayLightCycle==true) world.setGameRule(GameRule.ADVANCE_TIME, false);
                                 var dayLengthCompensation = worldConfigSection.getBoolean(configRealTimeDayLengthCompensationKey, true);
                                 final long minecraftTime;
                                 if(dayLengthCompensation){
