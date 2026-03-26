@@ -59,7 +59,7 @@ commands:
   spawn:
     description: TP to spawn
     usage: Skriv /spawn
-    permission: sparkutils.spawn.use
+    permission: sparkutils.spawn.self
   spawnall:
     description: TP all players to spawn
     usage: Skriv /spawn
@@ -122,8 +122,13 @@ permissions:
     default: true
   sparkutils.home.limit.1:
     default: true
-    
-  sparkutils.spawn.use:
+  
+  sparkutils.spawn:
+    description: Ger tillgång att tp till spawn.
+    default: true
+    children:
+        sparkutils.spawn.self: true
+  sparkutils.spawn.self:
     description: Ger tillgång att tp till spawn.
     default: true
   sparkutils.spawn.other:
