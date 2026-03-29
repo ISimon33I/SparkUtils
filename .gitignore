@@ -21,6 +21,7 @@ hs_err_pid*
 ### Gradle ###
 .gradle
 /build/
+/bin/
 .vscode
 
 # Ignore Gradle GUI config
