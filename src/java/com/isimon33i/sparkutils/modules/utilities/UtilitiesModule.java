@@ -60,6 +60,11 @@ public class UtilitiesModule extends Module implements Listener, Runnable {
 
         registerCommand(plugin, "afk", this);
         registerCommand(plugin, "playtime", this);
+        
+        for (Player player : plugin.getServer().getOnlinePlayers()) {
+            startPlaytimeCounter(player.getUniqueId());
+            playerDidSomthing(player.getUniqueId());
+        }
     }
 
     @Override
