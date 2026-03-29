@@ -15,8 +15,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.sparkutils.modules.Module;
 import com.isimon33i.utils.ChatUtils;
 import com.isimon33i.utils.ConfigUtils;
@@ -33,18 +33,18 @@ public class WarpModule extends Module {
 
     public final NamespacedKey warpNameKey;
 
-    public WarpModule(JavaPlugin plugin) {
+    public WarpModule(Main plugin) {
         super(plugin);
         warpNameKey = new NamespacedKey(plugin, "warp.tp");
     }
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
+    public void onRegister() {
         registerCommand(plugin, "warp", this);
         registerCommand(plugin, "setwarp", this);
         registerCommand(plugin, "editwarp", this);
 
-        warpsConfig = ConfigUtils.createConfig(plugin, warpsConfigFilePath, false);
+        warpsConfig = ConfigUtils.createConfig(plugin, warpsConfigFilePath, true, false);
 
         warpMenu.onMenuClick = x -> onMenuClick(x);
         warpMenu.onPopulateMenu = (x, y) -> populateMeny(x, y);
@@ -52,7 +52,7 @@ public class WarpModule extends Module {
     }
 
     @Override
-    public void onUnregister(JavaPlugin plugin) {
+    public void onUnregister() {
         warpMenu.closeAllInventories(plugin);
     }
 

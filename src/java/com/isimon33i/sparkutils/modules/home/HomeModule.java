@@ -17,8 +17,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.sparkutils.modules.Module;
 import com.isimon33i.utils.ChatUtils;
 import com.isimon33i.utils.ConfigUtils;
@@ -34,14 +34,14 @@ public class HomeModule extends Module {
     InventoryMenu homesMenu = new InventoryMenu();
     public final NamespacedKey homeNameKey;
 
-    public HomeModule(JavaPlugin plugin) {
+    public HomeModule(Main plugin) {
         super(plugin);
         homeNameKey = new NamespacedKey(plugin, "home.tp");
     }
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
-        homesConfig = ConfigUtils.createConfig(plugin, homesConfigFilePath, false);
+    public void onRegister() {
+        homesConfig = ConfigUtils.createConfig(plugin, homesConfigFilePath, true, false);
 
         registerCommand(plugin, "home", this);
         registerCommand(plugin, "sethome", this);
@@ -54,7 +54,7 @@ public class HomeModule extends Module {
     }
 
     @Override
-    public void onUnregister(JavaPlugin plugin) {
+    public void onUnregister() {
         homesMenu.closeAllInventories(plugin);
     }
 
@@ -119,12 +119,12 @@ public class HomeModule extends Module {
                         return true;
                     } else if (args[1].equalsIgnoreCase("rename")) {
                         if (args.length == 3) {
-                            var newNomeName = args[2];
-                            var home = getHome(player, newNomeName);
-                            var oldHomeNamePlaceholder = new Placeholder("old_home", homeName);
+                            var newHomeName = args[2];
+                            var home = getHome(player, homeName);
+                            var newHomeNamePlaceholder = new Placeholder("home_new", newHomeName);
                             removeHome(player, homeName);
-                            setHome(player, newNomeName, home);
-                            player.sendMessage(langManager.getMessage("home.renamed", locale, srcPlayerPlaceholder, homeNamePlaceholder, oldHomeNamePlaceholder));
+                            setHome(player, newHomeName, home);
+                            player.sendMessage(langManager.getMessage("home.renamed", locale, srcPlayerPlaceholder, homeNamePlaceholder, newHomeNamePlaceholder));
                             return true;
                         } else {
                             player.sendMessage(langManager.getMessage("home.edithome_usage", locale, srcPlayerPlaceholder, homeNamePlaceholder));

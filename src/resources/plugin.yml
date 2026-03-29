@@ -94,6 +94,12 @@ commands:
   top:
     description: Display economy balance toplist
     permission: sparkutils.economy.top
+  afk:
+    description: Toggle AFK status
+    permission: sparkutils.afk
+  playtime:
+    description: Display playtime
+    permission: sparkutils.playtime
 
 permissions:
   sparkutils.*:
@@ -137,3 +143,11 @@ permissions:
   sparkutils.spawn.all:
     description: Ger tillgång att tp alla till spawn.
     default: op
+    
+  sparkutils.afk:
+    description: Ger tillgång till AFK kommandot.
+    default: true
+    
+  sparkutils.playtime:
+    description: Ger tillgång till playtime kommandot.
+    default: true

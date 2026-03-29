@@ -12,8 +12,8 @@ import org.bukkit.GameRule;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.utils.ConfigUtils;
 import com.isimon33i.utils.SunCalc;
 
@@ -33,14 +33,14 @@ public class Time extends Module implements Runnable {
     
     HashMap<UUID, Double> timeCounterMap;
     
-    public Time(JavaPlugin plugin) {
+    public Time(Main plugin) {
         super(plugin);
         timeCounterMap = new HashMap<>();
     }
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
-        timeConfig = ConfigUtils.createConfig(plugin, timeConfigFilePath, false);
+    public void onRegister() {
+        timeConfig = ConfigUtils.createConfig(plugin, timeConfigFilePath, true, false);
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, 0, 1);
     }
 

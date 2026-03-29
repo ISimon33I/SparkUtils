@@ -12,12 +12,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.utils.ChatUtils;
 import com.isimon33i.utils.lang.Placeholder;
 
 public class TPA extends Module implements Runnable {
 
-    public TPA(JavaPlugin plugin) {
+    public TPA(Main plugin) {
         super(plugin);
     }
 
@@ -50,7 +51,7 @@ public class TPA extends Module implements Runnable {
     private long requestTimeout = 30000;
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
+    public void onRegister() {
         registerCommand(plugin, "tpa", this);
         registerCommand(plugin, "tpahere", this);
         registerCommand(plugin, "tpaccept", this);
@@ -61,7 +62,7 @@ public class TPA extends Module implements Runnable {
     }
 
     @Override
-    public void onUnregister(JavaPlugin plugin) {
+    public void onUnregister() {
         plugin.getServer().getScheduler().cancelTask(taskId);
     }
 

@@ -13,8 +13,8 @@ import org.bukkit.event.entity.EntityBreakDoorEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.utils.ConfigUtils;
 import static com.isimon33i.utils.Utils.filterByStart;
 import com.isimon33i.utils.lang.Placeholder;
@@ -30,15 +30,15 @@ public class AntiGriefing extends Module implements Listener {
 	final String configPreventCreeperEntityDamageKey = "prevent-creeper-entity-damage";
 	final String configPreventZombieBreakDoorKey = "prevent-zombie-break-door";
     
-    public AntiGriefing(JavaPlugin plugin) {
+    public AntiGriefing(Main plugin) {
         super(plugin);
     }
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
+    public void onRegister() {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         
-        antiGrifingConfig = ConfigUtils.createConfig(plugin, antiGrifingConfigFilePath, false);
+        antiGrifingConfig = ConfigUtils.createConfig(plugin, antiGrifingConfigFilePath, true, false);
 		
 		registerCommand(plugin, "antigrief", this);
     }

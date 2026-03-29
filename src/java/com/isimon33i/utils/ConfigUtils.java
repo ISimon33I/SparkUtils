@@ -12,14 +12,24 @@ public class ConfigUtils {
     private ConfigUtils() {
     }
 
-    public static FileConfiguration createConfig(JavaPlugin plugin, String path, boolean replace) {
+    public static FileConfiguration createConfig(JavaPlugin plugin, String path, boolean saveDefaultResource, boolean replace) {
         var configFile = new File(plugin.getDataFolder(), path);
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
-            plugin.saveResource(path, replace);
+            if (saveDefaultResource) {
+                plugin.saveResource(path, replace); 
+            }
+        }
+        
+        var config = YamlConfiguration.loadConfiguration(configFile);
+        
+        try {
+            config.save(configFile);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return YamlConfiguration.loadConfiguration(configFile);
+        return config;
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
@@ -28,7 +38,7 @@ public class ConfigUtils {
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
         }
-        
+
         try {
             config.save(configFile);
         } catch (IOException e) {

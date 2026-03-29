@@ -1,0 +1,24 @@
+
+afk:
+  # Style used for afk message sent to the player
+  # Available syles:
+  #   - chat
+  #   - title
+  #   - actionbar
+  self-message-style: actionbar
+  
+  # Seconds to fadeIn title
+  title-fadeIn: 0.5
+  # Seconds for title to stay
+  title-stay: 3.0
+  # Seconds to fadeOut title
+  title-fadeOut: 1.0
+  
+  send-message-to-self: true
+  send-message-to-others: true
+  
+  # Seconds of inactivity before afk
+  timeout: 300
+  
+  # If playtime counter should be paused then player is AFK
+  pause-playtime-when-afk: true

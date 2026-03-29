@@ -16,8 +16,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.ServicePriority;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.sparkutils.modules.Module;
 import com.isimon33i.utils.ChatUtils;
 import com.isimon33i.utils.ConfigUtils;
@@ -31,7 +31,15 @@ public class EconomyModule extends Module implements Listener, Runnable {
     FileConfiguration economyConfig;
 
     EconomyBackend economyBackend;
+    public EconomyBackend getEconomyBackend() {
+        return economyBackend;
+    }
+
     EconomyVault economyVault;
+
+    public EconomyVault getEconomyVault() {
+        return economyVault;
+    }
 
     public record PlayerPayRequest(UUID srcPlayer, double amount, long millisOnCreation) {
 
@@ -44,15 +52,15 @@ public class EconomyModule extends Module implements Listener, Runnable {
     private HashMap<UUID, List<PlayerPayRequest>> payRequests = new HashMap<>();
     private HashMap<UUID, List<PlayerPayConfirm>> payConfirmes = new HashMap<>();
 
-    public EconomyModule(JavaPlugin plugin) {
+    public EconomyModule(Main plugin) {
         super(plugin);
 
     }
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
+    public void onRegister() {
         if (plugin.getServer().getPluginManager().getPlugin("Vault") != null) {
-            economyConfig = ConfigUtils.createConfig(plugin, economyConfigFilePath, false);
+            economyConfig = ConfigUtils.createConfig(plugin, economyConfigFilePath, true, false);
 
             var storageSection = economyConfig.getConfigurationSection("storage");
             if (storageSection != null) {
@@ -108,7 +116,7 @@ public class EconomyModule extends Module implements Listener, Runnable {
     }
 
     @Override
-    public void onUnregister(JavaPlugin plugin) {
+    public void onUnregister() {
         plugin.getServer().getScheduler().cancelTask(taskId);
     }
 

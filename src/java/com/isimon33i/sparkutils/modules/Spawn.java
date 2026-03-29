@@ -9,8 +9,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.isimon33i.sparkutils.Main;
 import com.isimon33i.utils.ConfigUtils;
 import com.isimon33i.utils.lang.Placeholder;
 
@@ -19,16 +19,16 @@ public class Spawn extends Module {
     FileConfiguration spawnConfig;
     final String spawnConfigFilePath = "spawn.yml";
 
-    public Spawn(JavaPlugin plugin) {
+    public Spawn(Main plugin) {
         super(plugin);
     }
 
     @Override
-    public void onRegister(JavaPlugin plugin) {
+    public void onRegister() {
         registerCommand(plugin, "spawn", this);
         registerCommand(plugin, "spawnall", this);
 
-        spawnConfig = ConfigUtils.createConfig(plugin, spawnConfigFilePath, false);
+        spawnConfig = ConfigUtils.createConfig(plugin, spawnConfigFilePath, true, false);
     }
 
     @Override
