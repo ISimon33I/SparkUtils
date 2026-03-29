@@ -7,7 +7,7 @@ api-version: 1.21
 description: SparkUtils lägger till blandade användbara funktioner!
 author: ISimon33I
 
-softdepend: [Vault]
+softdepend: [Vault, LuckPerms]
 
 commands:
   tpa:
