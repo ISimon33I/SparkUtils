@@ -114,3 +114,6 @@ utilities.afk.false.self=&7Du är inte längre &aAFK!
 utilities.afk.true.other=&f${player} &7är nu &cAFK!
 utilities.afk.false.other=&f${player} &7är inte längre &aAFK!
 utilities.playtime=&7Du har spelat i &f${d} &7dagar &f${h} &7timmar och &f${m} &7minuter
+
+chat.player_join=&7[&a+&7] &r${displayname} &6har anslutit!
+chat.player_leave=&8[&c-&8] &r${displayname} &6har lämnat!

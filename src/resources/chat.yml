@@ -1,0 +1,7 @@
+enabled: true
+
+use-custom-displayname: false
+displayname-format: "${prefix}${player}${surfix}"
+
+use-custom-join-message: false
+use-custom-leave-message: false

@@ -10,6 +10,7 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.isimon33i.sparkutils.modules.AntiGriefing;
+import com.isimon33i.sparkutils.modules.ChatFormater;
 import com.isimon33i.sparkutils.modules.Spawn;
 import com.isimon33i.sparkutils.modules.TPA;
 import com.isimon33i.sparkutils.modules.Time;
@@ -35,6 +36,7 @@ public class Main extends JavaPlugin implements PluginMessageListener {
     Time time;
     EconomyModule economy;
     UtilitiesModule utilities;
+    ChatFormater chatFormater;
 
     public TPA getTpa() {
         return tpa;
@@ -67,6 +69,10 @@ public class Main extends JavaPlugin implements PluginMessageListener {
     public UtilitiesModule getUtilities() {
         return utilities;
     }
+    
+    public ChatFormater getChatFormater() {
+        return chatFormater;
+    }
 
     @Override
     public void onEnable() {
@@ -93,6 +99,7 @@ public class Main extends JavaPlugin implements PluginMessageListener {
         time = new Time(this);
         economy = new EconomyModule(this);
         utilities = new UtilitiesModule(this);
+        chatFormater = new ChatFormater(this);
 
         tpa.onRegister();
         warp.onRegister();
@@ -102,6 +109,7 @@ public class Main extends JavaPlugin implements PluginMessageListener {
         time.onRegister();
         economy.onRegister();
         utilities.onRegister();
+        chatFormater.onRegister();
     }
 
     @Override
@@ -110,7 +118,8 @@ public class Main extends JavaPlugin implements PluginMessageListener {
 
         this.getServer().getMessenger().unregisterOutgoingPluginChannel(this);
         this.getServer().getMessenger().unregisterIncomingPluginChannel(this);
-
+        
+        chatFormater.onUnregister();
         utilities.onUnregister();
         economy.onUnregister();
         time.onUnregister();

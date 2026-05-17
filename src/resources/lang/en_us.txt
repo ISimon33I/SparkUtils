@@ -113,3 +113,6 @@ utilities.afk.false.self = You are no longer AFK!
 utilities.afk.true.other = ${player} is now AFK!
 utilities.afk.false.other = ${player} is no longer AFK!
 utilities.playtime = You have played for ${playtime_d} days ${playtime_h} hours ${playtime_m} minutes
+
+chat.player_join=&7[&a+&7] &r${displayname} &6has joined!
+chat.player_leave=&8[&c-&8] &r${displayname} &6has left!
