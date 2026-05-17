@@ -36,7 +36,7 @@ public class ChatUtils {
      */
     public static void sendClickableCommand(Player player, String message, String command) {
         // Make a new component (Bungee API).
-        TextComponent component = new TextComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', message)));
+        TextComponent component = new TextComponent(TextComponent.fromLegacy(ChatUtils.hexColor(ChatColor.translateAlternateColorCodes('&', message))));
         // Add a click event to the component.
         component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + command));
 
@@ -46,12 +46,12 @@ public class ChatUtils {
 
     public static void sendTwoButtonMessage(Player player, String message, String btn1Txt, String btn2Txt, String btn1Command, String btn2Command) {
         // Make a new component (Bungee API).
-        TextComponent messageComponent = new TextComponent(new TextComponent(ChatUtils.hexColor(message)));
+        TextComponent messageComponent = new TextComponent(TextComponent.fromLegacy(ChatUtils.hexColor(message)));
 
-        TextComponent acceptComponent = new TextComponent(new TextComponent(ChatUtils.hexColor(btn1Txt)));
+        TextComponent acceptComponent = new TextComponent(TextComponent.fromLegacy(ChatUtils.hexColor(btn1Txt)));
         acceptComponent.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + btn1Command));
 
-        TextComponent denyComponent = new TextComponent(new TextComponent(ChatUtils.hexColor(btn2Txt)));
+        TextComponent denyComponent = new TextComponent(TextComponent.fromLegacy(ChatUtils.hexColor(btn2Txt)));
         denyComponent.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + btn2Command));
         
         
