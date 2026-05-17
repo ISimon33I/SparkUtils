@@ -5,3 +5,4 @@ displayname-format: "${prefix}${player}${surfix}"
 
 use-custom-join-message: false
 use-custom-leave-message: false
+custom-join-message-delay: 0

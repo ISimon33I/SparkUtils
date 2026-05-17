@@ -73,15 +73,20 @@ public class ChatFormater extends Module implements Listener {
         if(!chatConfig.getBoolean("use-custom-join-message")) return;
         event.setJoinMessage(null);
         
-        var ph_displayname = new Placeholder("displayname", event.getPlayer().getDisplayName());
-        var ph_name = new Placeholder("name", event.getPlayer().getName());
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+            @Override
+            public void run() {
+                var ph_displayname = new Placeholder("displayname", event.getPlayer().getDisplayName());
+                var ph_name = new Placeholder("name", event.getPlayer().getName());
+                for (Player player : plugin.getServer().getOnlinePlayers()) {
+                    if(player==null)continue;
+                    var locale = player.getLocale();
+                    var message = langManager.getMessage("chat.player_join", locale, ph_displayname, ph_name);
+                    player.sendMessage(message);
+                }
+            }
+        }, chatConfig.getInt("custom-join-message-delay", 0));
         
-        for (Player player : plugin.getServer().getOnlinePlayers()) {
-            if(player==null)continue;
-            var locale = player.getLocale();
-            var message = langManager.getMessage("chat.player_join", locale, ph_displayname, ph_name);
-            player.sendMessage(message);
-        }
     }
     
     @EventHandler
