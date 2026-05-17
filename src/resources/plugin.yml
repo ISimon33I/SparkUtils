@@ -16,7 +16,7 @@ commands:
     permission: sparkutils.tpa
   tpahere:
     description: TPHere request.
-    usage: Skriv /tpaccept
+    usage: Skriv /tpahere <player>
     permission: sparkutils.tpa.here
   tpaccept:
     description: Accept a tp request.
