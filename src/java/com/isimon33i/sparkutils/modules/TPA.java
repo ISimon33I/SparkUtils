@@ -10,7 +10,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.isimon33i.sparkutils.Main;
 import com.isimon33i.utils.ChatUtils;
@@ -243,7 +242,11 @@ public class TPA extends Module implements Runnable {
                         for (var req : requestList) {
                             if (req.playerName.equalsIgnoreCase(args[0])) {
                                 requestList.remove(req);
-                                player.sendMessage(langManager.getMessage("tpa.request.denied", locale, new Placeholder("srcPlayer", args[0])));
+                                
+                                var srcPlayer = plugin.getServer().getPlayer(req.playerID);
+                                if(srcPlayer==null) return true;
+                                srcPlayer.sendMessage(langManager.getMessage("tpa.request.denied.other", locale, new Placeholder("dstPlayer", player.getDisplayName())));
+                                player.sendMessage(langManager.getMessage("tpa.request.denied", locale, new Placeholder("srcPlayer", srcPlayer.getDisplayName())));
                                 return true;
                             }
                         }
@@ -257,7 +260,12 @@ public class TPA extends Module implements Runnable {
                             return true;
                         } else {
                             var req = requestList.remove(0);
-                            player.sendMessage(langManager.getMessage("tpa.request.denied", locale, new Placeholder("srcPlayer", req.playerName)));
+                            
+                            var srcPlayer = plugin.getServer().getPlayer(req.playerID);
+                            if(srcPlayer==null) return true;
+                            srcPlayer.sendMessage(langManager.getMessage("tpa.request.denied.other", locale, new Placeholder("dstPlayer", player.getDisplayName())));
+                            player.sendMessage(langManager.getMessage("tpa.request.denied", locale, new Placeholder("srcPlayer", srcPlayer.getDisplayName())));
+                            
                             return true;
                         }
                     }

@@ -20,6 +20,7 @@ tpa.request.already_pending=&#B32020A TPA request is already pending for player 
 tpa.request.no_pending_from_player=&#B32020No pending requests from player &f${srcPlayer}
 tpa.request.no_pending=&#B32020No pending requests
 tpa.request.denied=&#B32020Request denied
+tpa.request.denied.other=&#B32020Request denied by ${dstPlayer}
 tpa.accept=&#8FD169Accept
 tpa.deny=&#B32020Deny
 tpa.accept_button=&r[&a&lAccept&r]

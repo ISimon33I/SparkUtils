@@ -20,6 +20,7 @@ tpa.request.already_pending=&#B32020TPA-förfrågan väntar redan på spelare &f
 tpa.request.no_pending_from_player=&#B32020Inga väntande förfrågningar från spelare &f${srcPlayer}
 tpa.request.no_pending=&#B32020Inga väntande förfrågningar
 tpa.request.denied=&#B32020Förfrågan nekad
+tpa.request.denied.other=&#B32020Förfrågan nekad av ${dstPlayer}
 tpa.accept=&#8FD169Acceptera
 tpa.deny=&#B32020Neka
 tpa.accept_button=&r[&a&lAcceptera&r]
