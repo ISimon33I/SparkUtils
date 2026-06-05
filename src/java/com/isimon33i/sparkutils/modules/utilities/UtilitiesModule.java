@@ -175,9 +175,9 @@ public class UtilitiesModule extends Module implements Listener, Runnable {
                 } else {
                     if (utilitiesConfig.getBoolean("afk.send-message-to-others")) {
                         if (afk) {
-                            player.sendMessage(langManager.getMessage("utilities.afk.true.other", thisPlayer.getLocale(), playerPlaceholder));
+                            player.sendMessage(langManager.getMessage("utilities.afk.true.other", player.getLocale(), playerPlaceholder));
                         } else {
-                            player.sendMessage(langManager.getMessage("utilities.afk.false.other", thisPlayer.getLocale(), playerPlaceholder));
+                            player.sendMessage(langManager.getMessage("utilities.afk.false.other", player.getLocale(), playerPlaceholder));
                         }
                     }
                 }
